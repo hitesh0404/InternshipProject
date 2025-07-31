@@ -2,6 +2,7 @@ from django.shortcuts import render ,redirect
 from django.views import View
 from .forms import Brandcrateform
 from .forms import Productcrateform
+from .models import Product as ProductModel
 # Create your views here.
 class Brand (View):
      def get(self,request):
@@ -38,4 +39,12 @@ class Product (View):
                'form':form
              }
             return render(request,'inventory/createproduct.html',context)  
-         
+     
+def product_list(request):
+     products = ProductModel.objects.all()
+     context={
+          'products':products
+          }
+     return render(request,'inventory/product_list.html',context)
+
+     
