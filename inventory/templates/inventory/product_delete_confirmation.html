@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block main %}
+
+
+<h1>Delete Product</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    <h1>{{ product.name}}</h1>
+    <input class="bg-warning" type ="submit" value="Yes! delete this product">
+    <a href="/inventory/product/details/{{ product.id }}/" class="btn btn-warning">No</a>
+
+</form>
+
+{% endblock  %}
+
+
+
+

@@ -1,4 +1,4 @@
-from django.shortcuts import render ,redirect
+from django.shortcuts import render ,redirect,get_object_or_404
 from django.views import View
 from .forms import Brandcrateform
 from .forms import Productcrateform
@@ -62,3 +62,43 @@ def search_product(request):
           'products':products
           }
      return render(request,'inventory/product_list.html',context)
+
+
+def product_details(request,id):
+     product = get_object_or_404(Product,id=id)
+     context = {
+          'product':product
+     }
+     return render(request,'inventory/product_details.html',context)
+def product_delete(request,id):
+     product = get_object_or_404(Product,id=id)
+     
+def product_update(request,id):
+     product = get_object_or_404(Product,id=id)
+     if request.method == "POST":
+          form = Productcrateform(request.POST,instance=product)
+          if form.is_valid():
+               form.save()
+               return redirect('product_details' ,id)
+          else:
+               context={
+                    'form':form
+               }
+               return render(request,'inventory/product_update.html',context)
+     elif request.method == "GET":
+          form = Productcrateform(instance=product)
+          context={
+               'form':form
+          }
+          return render(request,'inventory/product_update.html',context)
+
+def product_delete(request,id):
+     product = get_object_or_404(Product,id=id)
+     if request.method == "POST":
+          product.delete()
+          return redirect('product_list')
+     elif request.method == "GET":
+          context={
+               'product':product
+          }
+          return render(request,'inventory/product_delete_confirmation.html',context)

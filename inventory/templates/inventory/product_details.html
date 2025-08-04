@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block main %}
+
+<div class="card text-start">
+    <div class="card-body">
+        {% csrf_token %} 
+        <h4 class="card-title">{{ product.name }}</h4>
+        <p class="card-text">{{ product.brand.name }}</p>
+    </div>
+</div>
+<div>
+    <a href="/inventory/product/update/{{ product.id }}/" class="btn btn-warning">Update</a>
+    <a href="/inventory/product/delete/{{ product.id }}/" class="btn btn-danger">Delete</a>
+</div>
+
+{% endblock main %}
