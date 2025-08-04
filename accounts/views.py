@@ -2,9 +2,8 @@ from django.shortcuts import render,redirect
 from django.contrib import messages
 from django.views import View
 from.forms import RegisterForm ,LoginForm
-from django.contrib.auth import login,authenticate
+from django.contrib.auth import login,authenticate,logout
 
-# Create your views here.
 class Register(View):
     def get(self,request):
         form = RegisterForm()
@@ -56,7 +55,13 @@ class Login(View):
             messages.error(request,"Form is not valid")
             return render(request,'accounts/login.html',context)
         
-
+class Logout(View):
+    def get(self,request):
+        logout(request)
+        return redirect('/')
+    def post(self,request):
+        logout(request)
+        return redirect('/')
 
 
             

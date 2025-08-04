@@ -17,13 +17,16 @@
                 <div class="collapse navbar-collapse" id="collapsibleNavId">
                     <ul class="navbar-nav me-auto mt-2 mt-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" href="#" aria-current="page"
+                            <a class="nav-link active" href="/" aria-current="page"
                                 >Home
                                 <span class="visually-hidden">(current)</span></a
                             >
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">Link</a>
+                            <a class="nav-link" href="{% url 'product_list' %}">Products</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/inventory/brand/list/">Brands</a>
                         </li>
                         <li class="nav-item dropdown">
                             <a
@@ -41,18 +44,19 @@
                                 class="dropdown-menu"
                                 aria-labelledby="dropdownId"
                             >
-                                <a class="dropdown-item" href="#"
-                                    >Action 1</a
+                                <a class="dropdown-item" href="{% url 'product_create' %}"
+                                    >Create Product</a
                                 >
-                                <a class="dropdown-item" href="#"
-                                    >Action 2</a
+                                <a class="dropdown-item" href="{% url 'brand_create' %}"
+                                    >Create Brand</a
                                 >
                             </div>
                         </li>
                     </ul>
-                    <form class="d-flex my-2 my-lg-0">
+                    <form class="d-flex my-2 my-lg-0" method = "get" action = "/inventory/search/">
                         <input
                             class="form-control me-sm-2"
+                            name = "q"
                             type="text"
                             placeholder="Search"
                         />
@@ -63,6 +67,14 @@
                             Search
                         </button>
                     </form>
+                    {% if not request.user.is_authenticated %}
+                    &nbsp;
+                    <a class="btn btn-warning" href="/accounts/login/">Login</a> &nbsp;
+                    <a class="btn btn-warning" href="/accounts/register/">Register</a>
+                    {% else %}
+                    Hello {{ request.user.username }}
+                    <a class="btn btn-warning" href="/accounts/logout/">Logout</a> &nbsp;
+                    {% endif %}
                 </div>
             </div>
            </nav>
