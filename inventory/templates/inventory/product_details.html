@@ -8,9 +8,11 @@
         <p class="card-text">{{ product.brand.name }}</p>
     </div>
 </div>
-<div>
-    <a href="/inventory/product/update/{{ product.id }}/" class="btn btn-warning">Update</a>
-    <a href="/inventory/product/delete/{{ product.id }}/" class="btn btn-danger">Delete</a>
-</div>
+{% if request.user.is_authenticated and request.user.user_type == 'S' %}
+    <div>
+        <a href="/inventory/product/update/{{ product.id }}/" class="btn btn-warning">Update</a>
+        <a href="/inventory/product/delete/{{ product.id }}/" class="btn btn-danger">Delete</a>
+    </div>
+{% endif %}
 
 {% endblock main %}

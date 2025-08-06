@@ -4,6 +4,7 @@ from .forms import Brandcrateform
 from .forms import Productcrateform
 from .models import Product as Product
 from .models import Brand as Brand
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 class BrandCreate (View):
      def get(self,request):
@@ -70,10 +71,11 @@ def product_details(request,id):
           'product':product
      }
      return render(request,'inventory/product_details.html',context)
-def product_delete(request,id):
-     product = get_object_or_404(Product,id=id)
-     
+
+@login_required
 def product_update(request,id):
+     if request.user.user_type != 'S' :
+          return redirect('/')
      product = get_object_or_404(Product,id=id)
      if request.method == "POST":
           form = Productcrateform(request.POST,instance=product)
@@ -92,6 +94,7 @@ def product_update(request,id):
           }
           return render(request,'inventory/product_update.html',context)
 
+@login_required
 def product_delete(request,id):
      product = get_object_or_404(Product,id=id)
      if request.method == "POST":

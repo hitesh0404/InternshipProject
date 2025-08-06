@@ -28,6 +28,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/inventory/brand/list/">Brands</a>
                         </li>
+                        {% if request.user.is_authenticated and request.user.user_type == 'S' %}
                         <li class="nav-item dropdown">
                             <a
                                 class="nav-link dropdown-toggle"
@@ -39,7 +40,6 @@
                                 >Dropdown</a
                             >
 
-                            
                             <div
                                 class="dropdown-menu"
                                 aria-labelledby="dropdownId"
@@ -52,6 +52,7 @@
                                 >
                             </div>
                         </li>
+                        {% endif %}
                     </ul>
                     <form class="d-flex my-2 my-lg-0" method = "get" action = "/inventory/search/">
                         <input
