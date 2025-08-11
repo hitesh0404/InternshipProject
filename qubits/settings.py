@@ -79,8 +79,13 @@ WSGI_APPLICATION = "qubits.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.mysql",
+        'OPTIONS':{
+            "host":"localhost",
+            "database" : "qubits",
+            "user" :"root",
+            "password" : "root",
+        }
     }
 }
 
@@ -126,3 +131,9 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_USER_MODEL = "accounts.User"
+
+
+STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR/'static']
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR/'media'

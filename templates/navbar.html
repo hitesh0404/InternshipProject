@@ -1,8 +1,10 @@
- <nav
+{% load static %}
+<nav
             class="navbar navbar-expand-md navbar-light bg-light"
            >
             <div class="container">
-                <a class="navbar-brand" href="#">Qubits</a>
+                <a class="navbar-brand" href="/">
+                    <img src="{% static 'image/logo.jpg' %}" class="logo" alt="logo">Qubits</a>
                 <button
                     class="navbar-toggler d-lg-none"
                     type="button"
