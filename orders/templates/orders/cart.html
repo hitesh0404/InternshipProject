@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block main %}
+    <div class="row">
+        {% for item in cart %}
+            <div class="col">
+                <!-- bs5-card-align -->
+                <div class="card text-start">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ item.product.name }}</h4>
+                        <p class="card-text">Price : {{ item.product.price }}</p>
+                        <p class="card-text">Quantity :{{ item.quantity }}</p>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <div>
+        <a href="">Checkout</a>
+    </div>
+
+{% endblock %}
