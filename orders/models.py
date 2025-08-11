@@ -11,7 +11,6 @@ class Cart(models.Model):
     product = models.ForeignKey(Product,on_delete=models.CASCADE)
     quantity = models.IntegerField()
     added_datetime = models.DateTimeField(auto_now_add=True)
-    
 class OrderStatus(models.Model):
     info = models.CharField(max_length=50)
     status = models.CharField(max_length=50, blank=False, null=False)

@@ -13,6 +13,10 @@
         <a href="/inventory/product/update/{{ product.id }}/" class="btn btn-warning">Update</a>
         <a href="/inventory/product/delete/{{ product.id }}/" class="btn btn-danger">Delete</a>
     </div>
+{% else %}
+    <div>
+        <a class="btn btn-success" href="{% url 'add_to_cart' product.id %}">Add to Cart</a>
+    </div>
 {% endif %}
 
 {% endblock main %}

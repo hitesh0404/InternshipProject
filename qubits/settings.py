@@ -79,13 +79,15 @@ WSGI_APPLICATION = "qubits.wsgi.application"
 
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.mysql",
-        'OPTIONS':{
-            "host":"localhost",
-            "database" : "qubits",
-            "user" :"root",
-            "password" : "root",
-        }
+        "ENGINE": "django.db.backends.sqlite3",
+        'NAME' : BASE_DIR/'db.sqlite3',
+        # "ENGINE": "django.db.backends.mysql",
+        # 'OPTIONS':{
+        #     "host":"localhost",
+        #     "database" : "qubits",
+        #     "user" :"root",
+        #     "password" : "root",
+        # }
     }
 }
 
