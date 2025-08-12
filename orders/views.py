@@ -3,6 +3,9 @@ from inventory.models import Product
 from .models import Cart
 from django.db.models import Q
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+
+@login_required
 def add_to_cart(request,product_id):
     product = get_object_or_404(Product,id = product_id)
     cart = Cart.objects.filter( ( Q(user = request.user) & Q( product = product)))
@@ -15,6 +18,7 @@ def add_to_cart(request,product_id):
         messages.success(request,f"Cart updated with Qauntity {cart[0].quantity } ")
     return redirect('product_details',product_id)
 
+@login_required
 def view_cart(request):
     cart = Cart.objects.filter(user=request.user)
     return render(request,'orders/cart.html',{'cart':cart})
