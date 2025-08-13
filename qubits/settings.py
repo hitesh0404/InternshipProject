@@ -139,3 +139,15 @@ STATIC_URL = 'static/'
 STATICFILES_DIRS = [BASE_DIR/'static']
 MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR/'media'
+
+from django.contrib.messages import constants as messages
+
+MESSAGE_TAGS={
+    messages.SUCCESS:'alert alert-success',
+    messages.ERROR:'alert alert-danger',
+    messages.INFO:'alert alert-info',
+    messages.WARNING:'alert alert-warning'
+}
+
+RAZORPAY_KEY_ID='rzp_test_CsuGslmdozGNld'
+RAZORPAY_KEY_SECRET='wC5RAX8qpYzKyY1SFv7RZ9Rj'

@@ -19,10 +19,9 @@ class User(AbstractUser):
 
 class Address(models.Model):
      title = models.CharField(max_length=40)
-    
      address_line_one =models.CharField(max_length=50)
      address_line_two =models.CharField(max_length=50)
      city = models.CharField(max_length=50)
      state = models.CharField(max_length=50)
      pincode = models.IntegerField()
-     user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+     user = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name='address')
