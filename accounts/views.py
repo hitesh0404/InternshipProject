@@ -63,5 +63,23 @@ class Logout(View):
         logout(request)
         return redirect('/')
 
-
-            
+from django.contrib.auth.decorators import login_required
+from .forms import AddressForm
+@login_required
+def add_address(request):
+    if request.method == "GET":
+        form = AddressForm()
+        return render(request,'accounts/add_address.html',{'form':form})
+    elif request.method == "POST":
+        form = AddressForm(request.POST)
+        if form.is_valid():
+            print("here")
+            form = form.save(commit=False)
+            form.user = request.user
+            form.save()
+            return redirect('checkout')
+        else:
+            messages.error(request,"Form is invalid")
+            return render(request,'accounts/add_address.html',{'form':form})
+    else:
+        return redirect('home')

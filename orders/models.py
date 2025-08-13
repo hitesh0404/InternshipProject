@@ -41,14 +41,14 @@ class Shipping(models.Model):
         return self.method +' ' + str(self.charges)
     
 class Order(models.Model):
-    uuid = models.CharField(max_length=128,default='0')
+    uuid = models.CharField(max_length=128,default='0',null=True)
     payment_id = models.CharField(max_length=100,default=0)
-    user = models.ForeignKey(User,on_delete=models.DO_NOTHING)
+    user = models.ForeignKey(User,on_delete=models.DO_NOTHING,null=True)
     address = models.ForeignKey(Address,on_delete=models.DO_NOTHING)
-    order_date = models.DateField(auto_now_add=True)
-    total = models.DecimalField(max_digits=10, decimal_places=2)
-    order_status = models.ForeignKey(OrderStatus,on_delete=models.DO_NOTHING)
-    shipping_id = models.ForeignKey(Shipping,on_delete=models.DO_NOTHING)
+    order_date = models.DateField(auto_now_add=True,null=True)
+    total = models.DecimalField(max_digits=10, decimal_places=2,null=True)
+    order_status = models.ForeignKey(OrderStatus,on_delete=models.DO_NOTHING,null=True)
+    shipping_id = models.ForeignKey(Shipping,on_delete=models.DO_NOTHING,null=True)
     class Meta:
         indexes = [
             models.Index(fields=['uuid'])

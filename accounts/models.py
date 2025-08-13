@@ -24,4 +24,4 @@ class Address(models.Model):
      city = models.CharField(max_length=50)
      state = models.CharField(max_length=50)
      pincode = models.IntegerField()
-     user = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name='address')
+     user = models.ForeignKey(User,on_delete=models.DO_NOTHING,related_name='address',null=True)

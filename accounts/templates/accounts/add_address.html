@@ -2,7 +2,7 @@
 
 {% block main %}
 
-<h1>Place Order</h1>
+<h1>Add Address</h1>
 <form action="" method="POST">
     {% csrf_token %}
     {% for field in form %}
@@ -17,7 +17,7 @@
         {% endif %}
     </div>
 {% endfor %}
-    <input type ="submit" value="Place your Order ">
+    <input type ="submit" value="Add Address">
 </form>
 
 

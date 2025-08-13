@@ -89,7 +89,7 @@ from .forms import OrderForm
 @login_required
 def checkout(request):
     if request.method == 'POST':
-        form = OrderForm(request.POST)
+        form = OrderForm(request.POST,user = request.user)
         if form.is_valid():
             od_id=uuid.uuid4().hex
             order_obj = form.save(commit=False)
@@ -120,12 +120,14 @@ def checkout(request):
             }
             return render(request,'cart/payment.html',context)
     else:
-        form = OrderForm()
-        if (request.user.address.all()):
+        form = OrderForm(user = request.user)
+        print(len(request.user.address.all()))
+        if len(request.user.address.all())==0:
             return redirect('add_address')
-        else:    
-            return render(request,'cart/checkout.html',{'form':form})
-
+        else:
+            print("here")
+            return render(request,'orders/checkout.html',{'form':form})
+ 
 @csrf_exempt
 @login_required
 def success(request):
