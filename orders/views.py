@@ -118,14 +118,13 @@ def checkout(request):
                 'total':total,
                 'payment':payment   
             }
-            return render(request,'cart/payment.html',context)
+            return render(request,'orders/payment.html',context)
     else:
         form = OrderForm(user = request.user)
         print(len(request.user.address.all()))
         if len(request.user.address.all())==0:
             return redirect('add_address')
         else:
-            print("here")
             return render(request,'orders/checkout.html',{'form':form})
  
 @csrf_exempt

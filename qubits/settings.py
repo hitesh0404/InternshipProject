@@ -149,5 +149,5 @@ MESSAGE_TAGS={
     messages.WARNING:'alert alert-warning'
 }
 
-RAZORPAY_KEY_ID='rzp_test_CsuGslmdozGNld'
-RAZORPAY_KEY_SECRET='wC5RAX8qpYzKyY1SFv7RZ9Rj'
+RAZORPAY_KEY_ID='rzp_test_R5AOUsmTk6YiHE'
+RAZORPAY_KEY_SECRET='iZ3zgCrnhBAiFtUfok8WVvrv'
